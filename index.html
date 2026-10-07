@@ -1,0 +1,4060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CCC Student Safety App</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #dfe5eb;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* =========================
+   PHONE
+========================= */
+
+.phone {
+    width: 390px;
+    height: 820px;
+    background: #f4f7fb;
+    border: 10px solid #111827;
+    border-radius: 42px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,.35);
+}
+
+/* STATUS BAR */
+
+.status-bar {
+    height: 34px;
+    background: #002b66;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 17px;
+    font-size: 12px;
+}
+
+.status-right {
+    display: flex;
+    gap: 8px;
+}
+
+/* =========================
+   APP HEADER
+========================= */
+
+.app-header {
+    background: linear-gradient(135deg, #002b66, #0052a4);
+    color: white;
+    height: 76px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 0;
+}
+
+.logo {
+    width: 48px;
+    height: 48px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid white;
+    box-shadow: 0 2px 6px rgba(0,0,0,.25);
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+.title h2 {
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.title p {
+    font-size: 9px;
+    opacity: .85;
+    white-space: nowrap;
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.icon-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,.15);
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    position: relative;
+}
+
+.notification-dot {
+    width: 8px;
+    height: 8px;
+    background: #ffcc00;
+    border-radius: 50%;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.content {
+    height: calc(100% - 34px - 80px - 65px);
+    overflow-y: auto;
+    padding: 17px;
+}
+
+.content::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome {
+    margin-bottom: 15px;
+}
+
+.welcome h3 {
+    color: #002b66;
+    font-size: 21px;
+}
+
+.welcome p {
+    color: #667085;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* =========================
+   EMERGENCY CARD
+========================= */
+
+.emergency-card {
+    background: linear-gradient(135deg,#b91c1c,#ef4444);
+    color: white;
+    padding: 18px;
+    border-radius: 18px;
+    margin-bottom: 17px;
+    box-shadow: 0 8px 20px rgba(185,28,28,.25);
+}
+
+.emergency-card h3 {
+    font-size: 18px;
+}
+
+.emergency-card p {
+    font-size: 11px;
+    margin: 5px 0 13px;
+    opacity: .9;
+}
+
+.emergency-btn {
+    width: 100%;
+    border: none;
+    background: white;
+    color: #b91c1c;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* =========================
+   MAIN BUTTONS
+========================= */
+
+.section-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: #344054;
+    margin-bottom: 10px;
+}
+
+.action-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.action-card {
+    background: white;
+    border: none;
+    border-radius: 17px;
+    padding: 16px 10px;
+    min-height: 130px;
+    box-shadow: 0 4px 14px rgba(15,23,42,.08);
+    cursor: pointer;
+    text-align: left;
+    transition: .2s;
+}
+
+.action-card:hover {
+    transform: translateY(-3px);
+}
+
+.action-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    background: #e8f1fb;
+    color: #0052a4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.action-card h4 {
+    color: #1d2939;
+    font-size: 14px;
+}
+
+.action-card p {
+    color: #667085;
+    font-size: 10px;
+    margin-top: 4px;
+    line-height: 14px;
+}
+
+/* =========================
+   QUICK INFO
+========================= */
+
+.info-card {
+    background: white;
+    border-radius: 16px;
+    padding: 15px;
+    margin-top: 15px;
+    box-shadow: 0 4px 14px rgba(15,23,42,.07);
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.info-row:last-child {
+    margin-bottom: 0;
+}
+
+.info-icon {
+    width: 36px;
+    height: 36px;
+    background: #eef4fa;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-row b {
+    font-size: 12px;
+    color: #344054;
+}
+
+.info-row span {
+    display: block;
+    font-size: 10px;
+    color: #667085;
+    margin-top: 2px;
+}
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    background: white;
+    border-top: 1px solid #e4e7ec;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav-btn {
+    border: none;
+    background: none;
+    color: #98a2b3;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.nav-btn span {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+
+.nav-btn.active {
+    color: #0052a4;
+    font-weight: bold;
+}
+
+/* =========================
+   SCREENS
+========================= */
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* =========================
+   INNER PAGE HEADER
+========================= */
+
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.back-btn {
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 11px;
+    background: white;
+    color: #002b66;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,.08);
+}
+
+.page-header h2 {
+    color: #002b66;
+    font-size: 20px;
+}
+
+/* =========================
+   FORMS
+========================= */
+
+.form-card {
+    background: white;
+    border-radius: 17px;
+    padding: 17px;
+    box-shadow: 0 4px 14px rgba(15,23,42,.08);
+}
+
+.form-group {
+    margin-bottom: 14px;
+}
+
+.form-group label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #344054;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    border: 1px solid #d0d5dd;
+    border-radius: 10px;
+    padding: 11px;
+    outline: none;
+    font-size: 12px;
+}
+
+.form-group textarea {
+    resize: none;
+    height: 90px;
+}
+
+.primary-btn {
+    width: 100%;
+    border: none;
+    background: #0052a4;
+    color: white;
+    padding: 12px;
+    border-radius: 11px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.secondary-btn {
+    width: 100%;
+    border: 1px solid #0052a4;
+    background: white;
+    color: #0052a4;
+    padding: 11px;
+    border-radius: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 9px;
+}
+
+/* =========================
+   MAP
+========================= */
+
+.map-container {
+    height: 280px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #dbeafe;
+    border: 2px solid #d5e5f5;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.map-info {
+    background: white;
+    margin-top: 12px;
+    padding: 15px;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(15,23,42,.07);
+}
+
+.map-info h3 {
+    font-size: 14px;
+    color: #002b66;
+}
+
+.map-info p {
+    font-size: 11px;
+    color: #667085;
+    margin: 5px 0 12px;
+    line-height: 16px;
+}
+
+
+/* =========================
+   SHUTTLE ROUTE MAP
+========================= */
+
+.shuttle-map {
+    position: relative;
+    min-height: 315px;
+    background: linear-gradient(145deg, #eef6ff, #f8fbff);
+    border: 2px solid #d5e5f5;
+    border-radius: 18px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    padding: 18px;
+}
+
+.shuttle-map::before,
+.shuttle-map::after {
+    content: "";
+    position: absolute;
+    background: #b9d3ed;
+    opacity: .55;
+}
+
+.shuttle-map::before {
+    width: 150%;
+    height: 32px;
+    left: -25%;
+    top: 118px;
+    transform: rotate(-16deg);
+}
+
+.shuttle-map::after {
+    width: 32px;
+    height: 130%;
+    right: 82px;
+    top: -15%;
+    transform: rotate(18deg);
+}
+
+.shuttle-map-title {
+    position: relative;
+    z-index: 2;
+    font-size: 12px;
+    color: #002b66;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.shuttle-map-subtitle {
+    position: relative;
+    z-index: 2;
+    font-size: 9px;
+    color: #667085;
+    margin-bottom: 13px;
+}
+
+.shuttle-route {
+    position: relative;
+    z-index: 2;
+    min-height: 235px;
+}
+
+.shuttle-route-line {
+    position: absolute;
+    left: 32px;
+    top: 20px;
+    bottom: 20px;
+    width: 5px;
+    border-radius: 10px;
+    background: #0052a4;
+}
+
+.shuttle-stop {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-height: 47px;
+}
+
+.shuttle-stop + .shuttle-stop {
+    margin-top: 5px;
+}
+
+.shuttle-stop-dot {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    border-radius: 50%;
+    background: white;
+    border: 5px solid #0052a4;
+    z-index: 3;
+    margin-left: 25px;
+}
+
+.shuttle-stop:first-child .shuttle-stop-dot {
+    border-color: #ffcc00;
+}
+
+.shuttle-stop-content {
+    background: rgba(255,255,255,.92);
+    border: 1px solid #dce8f5;
+    border-radius: 10px;
+    padding: 7px 10px;
+    flex: 1;
+    box-shadow: 0 3px 9px rgba(15,23,42,.06);
+}
+
+.shuttle-stop-content strong {
+    display: block;
+    color: #002b66;
+    font-size: 10px;
+}
+
+.shuttle-stop-content span {
+    color: #667085;
+    font-size: 8px;
+}
+
+.shuttle-map-note {
+    position: relative;
+    z-index: 2;
+    margin-top: 8px;
+    font-size: 8px;
+    color: #667085;
+    text-align: center;
+}
+
+.dark-mode .shuttle-map {
+    background: linear-gradient(145deg, #10243b, #162d47);
+    border-color: #274b70;
+}
+
+.dark-mode .shuttle-stop-content {
+    background: rgba(22,45,71,.95);
+    border-color: #31577e;
+}
+
+.dark-mode .shuttle-map-title,
+.dark-mode .shuttle-stop-content strong {
+    color: #dcecff;
+}
+
+.dark-mode .shuttle-map-subtitle,
+.dark-mode .shuttle-stop-content span,
+.dark-mode .shuttle-map-note {
+    color: #a9bfd4;
+}
+
+/* =========================
+   CAMPUS SERVICES
+========================= */
+
+.service-card {
+    background: white;
+    border-radius: 17px;
+    padding: 15px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 14px rgba(15,23,42,.08);
+}
+
+.service-row {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 11px 0;
+    border-bottom: 1px solid #eef0f3;
+}
+
+.service-row:last-child {
+    border-bottom: none;
+}
+
+.service-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 11px;
+    background: #e8f1fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.service-row h4 {
+    color: #344054;
+    font-size: 12px;
+}
+
+.service-row p {
+    color: #667085;
+    font-size: 9px;
+    margin-top: 3px;
+    line-height: 13px;
+}
+
+.event-item {
+    background: #f8fafc;
+    border-radius: 13px;
+    padding: 12px;
+    margin-bottom: 9px;
+    border-left: 4px solid #0052a4;
+}
+
+.event-item h4 {
+    color: #002b66;
+    font-size: 12px;
+}
+
+.event-item p {
+    color: #667085;
+    font-size: 9px;
+    margin-top: 4px;
+    line-height: 14px;
+}
+
+.phone.dark-mode .service-card {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+.phone.dark-mode .service-row {
+    border-bottom-color: #334155;
+}
+
+.phone.dark-mode .service-row h4 {
+    color: #f8fafc;
+}
+
+.phone.dark-mode .service-row p {
+    color: #94a3b8;
+}
+
+.phone.dark-mode .event-item {
+    background: #0f172a;
+}
+
+.phone.dark-mode .event-item h4 {
+    color: #f8fafc;
+}
+
+.phone.dark-mode .event-item p {
+    color: #94a3b8;
+}
+
+.phone.dark-mode .settings-section-title {
+    background: #172033;
+    border-bottom-color: #334155;
+    color: #f8fafc;
+}
+
+.phone.dark-mode .settings-section-title span {
+    background: #26364f;
+}
+
+.phone.dark-mode .setting small {
+    color: #94a3b8;
+}
+
+/* =========================
+   SECURITY
+========================= */
+
+
+.security-card {
+    background: white;
+    border-radius: 17px;
+    padding: 17px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 14px rgba(15,23,42,.08);
+}
+
+.security-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.security-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: #e8f1fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.security-card h3 {
+    font-size: 14px;
+    color: #1d2939;
+}
+
+.security-card p {
+    color: #667085;
+    font-size: 10px;
+    margin-top: 3px;
+}
+
+.security-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.small-btn {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.call {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.message {
+    background: #e0ecff;
+    color: #1d4ed8;
+}
+
+/* =========================
+   REPORTS
+========================= */
+
+.search-box {
+    display: flex;
+    background: white;
+    border-radius: 12px;
+    padding: 5px 10px;
+    margin-bottom: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.06);
+}
+
+.search-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 8px;
+    font-size: 11px;
+}
+
+.filter-row {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    margin-bottom: 13px;
+}
+
+.filter {
+    white-space: nowrap;
+    border: none;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.filter.active {
+    background: #0052a4;
+    color: white;
+}
+
+.report-card {
+    background: white;
+    padding: 14px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 3px 12px rgba(15,23,42,.07);
+}
+
+.report-head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.report-head h4 {
+    color: #344054;
+    font-size: 13px;
+}
+
+.status {
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 8px;
+    font-weight: bold;
+}
+
+.pending {
+    background: #fff4cc;
+    color: #9a6700;
+}
+
+.reviewed {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.resolved {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.report-card p {
+    font-size: 10px;
+    color: #667085;
+    margin-top: 7px;
+    line-height: 15px;
+}
+
+.report-date {
+    font-size: 8px;
+    color: #98a2b3;
+    margin-top: 8px;
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile-card {
+    background: linear-gradient(135deg,#002b66,#0052a4);
+    color: white;
+    border-radius: 18px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.profile-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: white;
+    color: #0052a4;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    font-weight: bold;
+    border: 3px solid #ffcc00;
+}
+
+.profile-card h3 {
+    margin-top: 10px;
+}
+
+.profile-card p {
+    font-size: 10px;
+    opacity: .8;
+}
+
+.settings-card {
+    background: white;
+    border-radius: 17px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(15,23,42,.08);
+    margin-bottom: 13px;
+}
+
+.settings-section-title {
+    min-height: 48px;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    background: #f8fafc;
+    border-bottom: 1px solid #eee;
+    color: #002b66;
+}
+
+.settings-section-title span {
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    background: #e8f1fb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.settings-section-title b {
+    font-size: 11px;
+}
+
+.setting {
+    border: none;
+    background: white;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    text-align: left;
+}
+
+.setting:last-child {
+    border-bottom: none;
+}
+
+.setting-left {
+    display: flex;
+    gap: 11px;
+    align-items: center;
+    min-width: 0;
+}
+
+.setting-left > div:last-child {
+    min-width: 0;
+}
+
+.setting small {
+    display: block;
+    margin-top: 3px;
+    color: #98a2b3;
+    font-size: 9px;
+    line-height: 12px;
+    font-weight: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.setting-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    background: #eef4fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.setting b {
+    font-size: 11px;
+    color: #344054;
+}
+
+.setting span {
+    color: #98a2b3;
+}
+
+/* =========================
+   NOTIFICATION PANEL
+========================= */
+
+.notification-panel {
+    position: absolute;
+    top: 34px;
+    right: 0;
+    width: 310px;
+    max-height: 530px;
+    background: white;
+    z-index: 100;
+    box-shadow: -5px 8px 25px rgba(0,0,0,.25);
+    display: none;
+    overflow-y: auto;
+}
+
+.notification-panel.show {
+    display: block;
+}
+
+.notification-header {
+    background: #002b66;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.notification-header h3 {
+    font-size: 15px;
+}
+
+.clear-btn {
+    border: none;
+    background: none;
+    color: #ffcc00;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.notification {
+    padding: 14px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    gap: 10px;
+}
+
+.notification.unread {
+    background: #f0f7ff;
+}
+
+.notif-icon {
+    min-width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #e8f1fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notification h4 {
+    font-size: 11px;
+    color: #344054;
+}
+
+.notification p {
+    font-size: 9px;
+    color: #667085;
+    margin-top: 3px;
+    line-height: 13px;
+}
+
+.notification time {
+    font-size: 8px;
+    color: #98a2b3;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.6);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-box {
+    background: white;
+    width: 100%;
+    border-radius: 22px;
+    padding: 22px;
+    text-align: center;
+}
+
+.modal-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: #fee2e2;
+    color: #dc2626;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
+
+.modal-box h2 {
+    color: #1d2939;
+    margin-top: 12px;
+}
+
+.modal-box p {
+    color: #667085;
+    font-size: 11px;
+    line-height: 17px;
+    margin: 8px 0 17px;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.modal-buttons button {
+    flex: 1;
+    padding: 11px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.cancel {
+    background: #eaecf0;
+}
+
+.confirm {
+    background: #dc2626;
+    color: white;
+}
+/* =========================
+   IN-APP PHONE NOTIFICATION
+========================= */
+
+.app-notification {
+    position: absolute;
+    top: 43px;
+    left: 12px;
+    right: 12px;
+    background: rgba(255,255,255,.97);
+    color: #1d2939;
+    border-radius: 15px;
+    padding: 11px 12px;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    z-index: 500;
+    box-shadow: 0 8px 25px rgba(0,0,0,.28);
+    border: 1px solid rgba(0,0,0,.08);
+    animation: phoneNotification .35s ease;
+}
+
+.app-notification.show {
+    display: flex;
+}
+
+.app-notification-icon {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 11px;
+    background: #e8f1fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 19px;
+}
+
+.app-notification-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.app-notification-title {
+    font-size: 11px;
+    font-weight: bold;
+    color: #1d2939;
+    margin-bottom: 2px;
+}
+
+.app-notification-message {
+    font-size: 9px;
+    color: #667085;
+    line-height: 13px;
+}
+
+.app-notification-time {
+    font-size: 8px;
+    color: #98a2b3;
+    margin-top: 3px;
+}
+
+.app-notification-close {
+    width: 22px;
+    height: 22px;
+    border: none;
+    background: #eef2f6;
+    border-radius: 50%;
+    color: #667085;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+@keyframes phoneNotification {
+
+    from {
+        transform: translateY(-25px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+}
+
+/* DARK MODE */
+
+.phone.dark-mode .app-notification {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+.phone.dark-mode .app-notification-title {
+    color: #f8fafc;
+}
+
+.phone.dark-mode .app-notification-message {
+    color: #94a3b8;
+}
+
+.phone.dark-mode .app-notification-time {
+    color: #64748b;
+}
+
+.phone.dark-mode .app-notification-close {
+    background: #334155;
+    color: #cbd5e1;
+}
+
+
+/* =========================
+   IN-APP CONFIRM / INFO
+========================= */
+
+.phone-dialog {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.58);
+    z-index: 450;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}
+
+.phone-dialog.show {
+    display: flex;
+}
+
+.phone-dialog-box {
+    width: 100%;
+    background: white;
+    border-radius: 22px;
+    padding: 21px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,.35);
+    animation: dialogPop .25s ease;
+}
+
+.phone-dialog-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #e8f1fb;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+}
+
+.phone-dialog-box h3 {
+    color: #1d2939;
+    font-size: 17px;
+    margin-top: 12px;
+}
+
+.phone-dialog-box p {
+    color: #667085;
+    font-size: 10px;
+    line-height: 15px;
+    margin: 7px 0 17px;
+}
+
+.phone-dialog-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.phone-dialog-buttons button {
+    flex: 1;
+    border: none;
+    padding: 11px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.dialog-cancel {
+    background: #eaecf0;
+    color: #344054;
+}
+
+.dialog-confirm {
+    background: #0052a4;
+    color: white;
+}
+
+.dialog-danger {
+    background: #dc2626;
+    color: white;
+}
+
+.phone.dark-mode .phone-dialog-box {
+    background: #1e293b;
+}
+
+.phone.dark-mode .phone-dialog-box h3 {
+    color: #f8fafc;
+}
+
+.phone.dark-mode .phone-dialog-box p {
+    color: #94a3b8;
+}
+
+.phone.dark-mode .dialog-cancel {
+    background: #334155;
+    color: white;
+}
+
+@keyframes dialogPop {
+
+    from {
+        transform: scale(.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast {
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    bottom: 80px;
+    background: #101828;
+    color: white;
+    padding: 13px 15px;
+    border-radius: 12px;
+    font-size: 11px;
+    display: none;
+    z-index: 300;
+    box-shadow: 0 7px 20px rgba(0,0,0,.3);
+}
+
+.toast.show {
+    display: block;
+    animation: toast .3s ease;
+}
+
+@keyframes toast {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* =========================
+   DARK MODE - IMPROVED
+========================= */
+
+body.dark {
+    background: #070b14;
+}
+
+.phone.dark-mode {
+    background: #0f172a;
+    color: #f8fafc;
+}
+
+.phone.dark-mode .content {
+    background: #0f172a;
+}
+
+/* Text */
+
+.phone.dark-mode .welcome h3,
+.phone.dark-mode .page-header h2,
+.phone.dark-mode .section-title {
+    color: #f8fafc;
+}
+
+.phone.dark-mode .welcome p {
+    color: #94a3b8;
+}
+
+/* Cards */
+
+.phone.dark-mode .action-card,
+.phone.dark-mode .info-card,
+.phone.dark-mode .form-card,
+.phone.dark-mode .map-info,
+.phone.dark-mode .security-card,
+.phone.dark-mode .report-card,
+.phone.dark-mode .settings-card {
+    background: #1e293b;
+    color: #f8fafc;
+    border: 1px solid #334155;
+}
+
+/* Action cards */
+
+.phone.dark-mode .action-card h4 {
+    color: #f8fafc;
+}
+
+.phone.dark-mode .action-card p {
+    color: #94a3b8;
+}
+
+.phone.dark-mode .action-icon {
+    background: #263b56;
+    color: #60a5fa;
+}
+
+/* Info */
+
+.phone.dark-mode .info-row {
+    color: #f8fafc;
+}
+
+.phone.dark-mode .info-row b {
+    color: #f8fafc;
+}
+
+.phone.dark-mode .info-row span {
+    color: #94a3b8;
+}
+
+.phone.dark-mode .info-icon {
+    background: #263b56;
+}
+
+/* Back button */
+
+.phone.dark-mode .back-btn {
+    background: #1e293b;
+    color: #f8fafc;
+    border: 1px solid #334155;
+}
+
+/* Forms */
+
+.phone.dark-mode .form-group label {
+    color: #cbd5e1;
+}
+
+.phone.dark-mode .form-group input,
+.phone.dark-mode .form-group select,
+.phone.dark-mode .form-group textarea {
+    background: #0f172a;
+    color: #f8fafc;
+    border-color: #475569;
+}
+
+.phone.dark-mode .form-group input::placeholder,
+.phone.dark-mode .form-group textarea::placeholder {
+    color: #64748b;
+}
+
+/* Map information */
+
+.phone.dark-mode .map-info h3 {
+    color: #f8fafc;
+}
+
+.phone.dark-mode .map-info p {
+    color: #94a3b8;
+}
+
+/* Security */
+
+.phone.dark-mode .security-card h3 {
+    color: #f8fafc;
+}
+
+.phone.dark-mode .security-card p {
+    color: #94a3b8;
+}
+
+/* Reports */
+
+.phone.dark-mode .search-box {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+.phone.dark-mode .search-box input {
+    background: transparent;
+    color: white;
+}
+
+.phone.dark-mode .search-box input::placeholder {
+    color: #64748b;
+}
+
+.phone.dark-mode .filter {
+    background: #1e293b;
+    color: #cbd5e1;
+    border: 1px solid #334155;
+}
+
+.phone.dark-mode .filter.active {
+    background: #0052a4;
+    color: white;
+}
+
+.phone.dark-mode .report-head h4 {
+    color: #f8fafc;
+}
+
+.phone.dark-mode .report-card p {
+    color: #94a3b8;
+}
+
+.phone.dark-mode .report-date {
+    color: #64748b;
+}
+
+/* Profile */
+
+.phone.dark-mode .profile-card {
+    background: linear-gradient(
+        135deg,
+        #002b66,
+        #064e9b
+    );
+}
+
+.phone.dark-mode .settings-card {
+    background: #1e293b;
+}
+
+.phone.dark-mode .setting {
+    background: #1e293b;
+    color: #f8fafc;
+    border-bottom: 1px solid #334155;
+}
+
+.phone.dark-mode .setting b {
+    color: #f8fafc;
+}
+
+.phone.dark-mode .setting span {
+    color: #64748b;
+}
+
+.phone.dark-mode .setting-icon {
+    background: #263b56;
+}
+
+/* Bottom navigation */
+
+.phone.dark-mode .bottom-nav {
+    background: #111827;
+    border-top: 1px solid #334155;
+}
+
+.phone.dark-mode .nav-btn {
+    color: #64748b;
+}
+
+.phone.dark-mode .nav-btn.active {
+    color: #60a5fa;
+}
+
+/* Notification */
+
+.phone.dark-mode .notification-panel {
+    background: #1e293b;
+    color: white;
+}
+
+.phone.dark-mode .notification-header {
+    background: #002b66;
+}
+
+.phone.dark-mode .notification {
+    background: #1e293b;
+    border-bottom: 1px solid #334155;
+}
+
+.phone.dark-mode .notification.unread {
+    background: #172554;
+}
+
+.phone.dark-mode .notification h4 {
+    color: #f8fafc;
+}
+
+.phone.dark-mode .notification p {
+    color: #94a3b8;
+}
+
+.phone.dark-mode .notification time {
+    color: #64748b;
+}
+
+/* Modal */
+
+.phone.dark-mode .modal-box {
+    background: #1e293b;
+}
+
+.phone.dark-mode .modal-box h2 {
+    color: #f8fafc;
+}
+
+.phone.dark-mode .modal-box p {
+    color: #94a3b8;
+}
+
+.phone.dark-mode .cancel {
+    background: #334155;
+    color: white;
+}
+
+
+
+/* =========================
+   DESKTOP MESSAGE
+========================= */
+
+@media(max-width:500px) {
+    body {
+        background: #f4f7fb;
+    }
+
+    .phone {
+        width: 100%;
+        height: 100vh;
+        border: none;
+        border-radius: 0;
+    }
+}
+
+/* =========================
+   ANNOUNCEMENTS
+========================= */
+.announcement-intro{
+    display:flex;
+    gap:11px;
+    align-items:center;
+    background:linear-gradient(135deg,#002b66,#0052a4);
+    color:white;
+    border-radius:16px;
+    padding:15px;
+    margin-bottom:12px;
+    box-shadow:0 4px 12px rgba(0,43,102,.15);
+}
+.announcement-intro-icon{
+    width:42px;height:42px;min-width:42px;border-radius:12px;
+    background:#ffcc00;display:flex;align-items:center;justify-content:center;font-size:21px;
+}
+.announcement-intro h3{font-size:13px;margin:0 0 4px;}
+.announcement-intro p{font-size:8px;line-height:12px;opacity:.85;margin:0;}
+.announcement-board{
+    background:#f8fafc;border-radius:16px;padding:13px;border:1px solid #e5edf6;
+}
+.official-label{font-size:8px;font-weight:800;letter-spacing:.8px;color:#667085;margin:0 0 10px;}
+.notice-post{
+    background:white;border:1px solid #e4eaf1;border-radius:13px;padding:13px;margin-bottom:10px;
+    cursor:pointer;box-shadow:0 2px 8px rgba(15,23,42,.04);transition:.15s;
+}
+.notice-post:last-child{margin-bottom:0;}
+.notice-post:active{transform:scale(.99);}
+.notice-post.urgent{border-left:4px solid #dc2626;}
+.notice-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;}
+.notice-category{font-size:7px;font-weight:800;letter-spacing:.4px;color:#0052a4;background:#e8f1fb;padding:4px 7px;border-radius:5px;}
+.urgent-tag{color:#b91c1c;background:#fee2e2;}
+.notice-date{font-size:7px;color:#98a2b3;}
+.notice-post h4{font-size:12px;color:#1d2939;line-height:16px;margin:0 0 6px;}
+.notice-post p{font-size:9px;line-height:14px;color:#667085;margin:0 0 10px;}
+.read-more{display:flex;justify-content:space-between;align-items:center;color:#0052a4;font-size:8px;font-weight:700;padding-top:8px;border-top:1px solid #edf1f5;}
+.read-more span{font-size:16px;font-weight:400;line-height:10px;}
+.phone.dark-mode .announcement-board{background:#0b1220;border-color:#334155;}
+.phone.dark-mode .official-label{color:#94a3b8;}
+.phone.dark-mode .notice-post{background:#111827;border-color:#334155;}
+.phone.dark-mode .notice-post h4{color:#f8fafc;}
+.phone.dark-mode .notice-post p{color:#94a3b8;}
+.phone.dark-mode .notice-category{background:#263b56;color:#60a5fa;}
+.phone.dark-mode .urgent-tag{background:#451a1a;color:#fca5a5;}
+.phone.dark-mode .read-more{border-color:#334155;color:#60a5fa;}
+
+</style>
+</head>
+
+<body>
+
+<div class="phone" id="phone">
+
+    <!-- STATUS BAR -->
+    <div class="status-bar">
+        <span id="clock">10:30</span>
+
+        <div class="status-right">
+            <span>▮▮▮</span>
+            <span>WiFi</span>
+            <span>🔋 87%</span>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <div class="app-header">
+
+        <div class="brand">
+
+            <div class="logo">
+                <img src="./ccc-logo.jpg" alt="CCC Logo">
+            </div>
+
+            <div class="title">
+                <h2>Student Safety</h2>
+                <p>City College of Calamba</p>
+            </div>
+
+        </div>
+
+        <div class="header-icons">
+
+            <button class="icon-btn" onclick="toggleNotifications()">
+                🔔
+                <span class="notification-dot" id="notificationDot"></span>
+            </button>
+
+            <button class="icon-btn" onclick="showScreen('profile')">
+                ☰
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- NOTIFICATION PANEL -->
+    <div class="notification-panel" id="notificationPanel">
+
+        <div class="notification-header">
+            <h3>Notifications</h3>
+            <button class="clear-btn" onclick="clearNotifications()">
+                Clear all
+            </button>
+        </div>
+
+        <div id="notificationList">
+
+            <div class="notification unread">
+                <div class="notif-icon">🛡️</div>
+
+                <div>
+                    <h4>Campus Safety Reminder</h4>
+                    <p>
+                        Always report suspicious activities
+                        immediately to campus security.
+                    </p>
+                    <time>Just now</time>
+                </div>
+            </div>
+
+            <div class="notification unread">
+                <div class="notif-icon">📢</div>
+
+                <div>
+                    <h4>Welcome to CCC Safety</h4>
+                    <p>
+                        You can now report emergencies,
+                        lost IDs, and facility concerns.
+                    </p>
+                    <time>Today</time>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CONTENT
+    ========================= -->
+
+    <div class="content">
+
+        <!-- HOME -->
+        <div class="screen active" id="home">
+
+            <div class="welcome">
+                <h3>Hello, Student! 👋</h3>
+                <p>Your safety is our priority.</p>
+            </div>
+
+            <div class="emergency-card">
+
+                <h3>🚨 Need Immediate Help?</h3>
+
+                <p>
+                    For emergencies or situations that
+                    require immediate assistance.
+                </p>
+
+                <button class="emergency-btn"
+                        onclick="openEmergency()">
+                    EMERGENCY
+                </button>
+
+            </div>
+
+
+            <div class="section-title">
+                Report or Request Assistance
+            </div>
+
+
+            <div class="action-grid">
+
+                <button class="action-card"
+                        onclick="showScreen('idlost')">
+
+                    <div class="action-icon">
+                        🪪
+                    </div>
+
+                    <h4>ID LOST</h4>
+
+                    <p>
+                        Report your lost student ID
+                        to campus administration.
+                    </p>
+
+                </button>
+
+
+                <button class="action-card"
+                        onclick="showScreen('facility')">
+
+                    <div class="action-icon">
+                        🏫
+                    </div>
+
+                    <h4>FACILITY CAMP.</h4>
+
+                    <p>
+                        View campus location and
+                        report facility concerns.
+                    </p>
+
+                </button>
+
+
+                <button class="action-card"
+                        onclick="showScreen('security')">
+
+                    <div class="action-icon">
+                        🛡️
+                    </div>
+
+                    <h4>SECURITY HELP</h4>
+
+                    <p>
+                        Contact campus security
+                        for assistance.
+                    </p>
+
+                </button>
+
+
+                <button class="action-card"
+                        onclick="showScreen('reports')">
+
+                    <div class="action-icon">
+                        📋
+                    </div>
+
+                    <h4>MY REPORTS</h4>
+
+                    <p>
+                        Check your submitted reports
+                        and their status.
+                    </p>
+
+                </button>
+
+
+            </div>
+
+
+            <div class="info-card">
+
+                <div class="info-row">
+
+                    <div class="info-icon">📍</div>
+
+                    <div>
+                        <b>Campus Safety Center</b>
+                        <span>
+                            Available during campus hours
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <div class="info-icon">📞</div>
+
+                    <div>
+                        <b>Emergency Assistance</b>
+                        <span>
+                            Contact security for urgent situations
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ID LOST -->
+        <div class="screen" id="idlost">
+
+            <div class="page-header">
+
+                <button class="back-btn"
+                        onclick="showScreen('home')">
+                    ←
+                </button>
+
+                <h2>Report Lost ID</h2>
+
+            </div>
+
+
+            <div class="form-card">
+
+                <div class="form-group">
+
+                    <label>Student Name</label>
+
+                    <input
+                        type="text"
+                        id="studentName"
+                        placeholder="Enter your full name">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Student ID Number</label>
+
+                    <input
+                        type="text"
+                        id="studentID"
+                        placeholder="e.g. 2026-00000">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Where did you lose your ID?</label>
+
+                    <select id="lostLocation">
+
+                        <option value="">
+                            Select location
+                        </option>
+
+                        <option>Classroom</option>
+                        <option>Library</option>
+                        <option>Canteen</option>
+                        <option>Campus Grounds</option>
+                        <option>Gymnasium</option>
+                        <option>Unknown</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Date Lost</label>
+
+                    <input
+                        type="date"
+                        id="lostDate">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Additional Details</label>
+
+                    <textarea
+                        id="lostDetails"
+                        placeholder="Describe your lost ID..."></textarea>
+
+                </div>
+
+
+                <button class="primary-btn"
+                        onclick="submitLostID()">
+
+                    Submit Lost ID Report
+
+                </button>
+
+
+                <button class="secondary-btn"
+                        onclick="showScreen('home')">
+
+                    Cancel
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- FACILITY -->
+        <div class="screen" id="facility">
+
+            <div class="page-header">
+
+                <button class="back-btn"
+                        onclick="showScreen('home')">
+                    ←
+                </button>
+
+                <h2>Facility Camp.</h2>
+
+            </div>
+
+
+            <div class="map-container">
+
+                <iframe
+                    src="https://www.google.com/maps?q=City+College+of+Calamba,+Calamba,+Laguna&output=embed"
+                    loading="lazy">
+                </iframe>
+
+            </div>
+
+
+            <div class="map-info">
+
+                <h3>📍 City College of Calamba</h3>
+
+                <p>
+                    View the campus location using Google Maps.
+                    You can use the map to locate the school
+                    and navigate to the campus.
+                </p>
+
+
+                <button class="primary-btn"
+                        onclick="openGoogleMaps()">
+
+                    🗺️ Open Google Maps
+
+                </button>
+
+
+                <button class="secondary-btn"
+                        onclick="showFacilityReport()">
+
+                    ⚠️ Report Facility Problem
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- FACILITY REPORT -->
+        <div class="screen" id="facilityReport">
+
+            <div class="page-header">
+
+                <button class="back-btn"
+                        onclick="showScreen('facility')">
+                    ←
+                </button>
+
+                <h2>Facility Report</h2>
+
+            </div>
+
+
+            <div class="form-card">
+
+                <div class="form-group">
+
+                    <label>Facility</label>
+
+                    <select id="facilityName">
+
+                        <option>Classroom</option>
+                        <option>Restroom</option>
+                        <option>Library</option>
+                        <option>Canteen</option>
+                        <option>Electrical Area</option>
+                        <option>Campus Grounds</option>
+                        <option>Other</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Problem</label>
+
+                    <textarea
+                        id="facilityProblem"
+                        placeholder="Describe the facility problem..."></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Priority</label>
+
+                    <select id="facilityPriority">
+
+                        <option>Low</option>
+                        <option>Medium</option>
+                        <option>High</option>
+                        <option>Urgent</option>
+
+                    </select>
+
+                </div>
+
+
+                <button class="primary-btn"
+                        onclick="submitFacilityReport()">
+
+                    Submit Facility Report
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- SECURITY -->
+        <div class="screen" id="security">
+
+            <div class="page-header">
+
+                <button class="back-btn"
+                        onclick="showScreen('home')">
+                    ←
+                </button>
+
+                <h2>Security Help</h2>
+
+            </div>
+
+
+            <div class="security-card">
+
+                <div class="security-top">
+
+                    <div class="security-icon">
+                        🛡️
+                    </div>
+
+                    <div>
+
+                        <h3>Campus Security</h3>
+
+                        <p>
+                            Available for student assistance
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="security-actions">
+
+                    <button class="small-btn call"
+                            onclick="callSecurity()">
+
+                        📞 Call
+
+                    </button>
+
+
+                    <button class="small-btn message"
+                            onclick="messageSecurity()">
+
+                        💬 Message
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="security-card">
+
+                <h3>Request Security Assistance</h3>
+
+                <p>
+                    Tell campus security what kind
+                    of assistance you need.
+                </p>
+
+
+                <div class="form-group"
+                     style="margin-top:12px">
+
+                    <label>Type of Assistance</label>
+
+                    <select id="securityType">
+
+                        <option>Suspicious Activity</option>
+                        <option>Personal Safety</option>
+                        <option>Lost Item</option>
+                        <option>Conflict / Incident</option>
+                        <option>Other</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Location</label>
+
+                    <input
+                        id="securityLocation"
+                        placeholder="Where are you?">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Details</label>
+
+                    <textarea
+                        id="securityDetails"
+                        placeholder="Describe the situation..."></textarea>
+
+                </div>
+
+
+                <button class="primary-btn"
+                        onclick="requestSecurity()">
+
+                    Request Assistance
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- REPORTS -->
+        <div class="screen" id="reports">
+
+            <div class="page-header">
+
+                <button class="back-btn"
+                        onclick="showScreen('home')">
+                    ←
+                </button>
+
+                <h2>My Reports</h2>
+
+            </div>
+
+
+            <div class="search-box">
+
+                🔍
+
+                <input
+                    type="text"
+                    id="reportSearch"
+                    placeholder="Search reports..."
+                    onkeyup="searchReports()">
+
+            </div>
+
+
+            <div class="filter-row">
+
+                <button class="filter active"
+                        onclick="filterReports('all',this)">
+                    All
+                </button>
+
+                <button class="filter"
+                        onclick="filterReports('Pending',this)">
+                    Pending
+                </button>
+
+                <button class="filter"
+                        onclick="filterReports('Reviewed',this)">
+                    Reviewed
+                </button>
+
+                <button class="filter"
+                        onclick="filterReports('Resolved',this)">
+                    Resolved
+                </button>
+
+            </div>
+
+
+            <div id="reportsList">
+
+                <div class="report-card"
+                     data-status="Reviewed">
+
+                    <div class="report-head">
+
+                        <h4>🪪 Lost ID</h4>
+
+                        <span class="status reviewed">
+                            Reviewed
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Lost student ID reported through
+                        the Student Safety App.
+                    </p>
+
+                    <div class="report-date">
+                        September 18, 2026 • 9:30 AM
+                    </div>
+
+                </div>
+
+
+                <div class="report-card"
+                     data-status="Resolved">
+
+                    <div class="report-head">
+
+                        <h4>🏫 Facility Concern</h4>
+
+                        <span class="status resolved">
+                            Resolved
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Facility concern has been forwarded
+                        to the appropriate office.
+                    </p>
+
+                    <div class="report-date">
+                        September 15, 2026 • 2:10 PM
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CAMPUS TRANSPORTATION -->
+        <div class="screen" id="transportation">
+
+            <div class="page-header">
+
+                <button class="back-btn"
+                        onclick="showScreen('home')">
+                    ←
+                </button>
+
+                <h2>Campus Transportation</h2>
+
+            </div>
+
+            <div class="shuttle-map">
+
+                <div class="shuttle-map-title">
+                    🚌 Campus Shuttle Route
+                </div>
+
+                <div class="shuttle-map-subtitle">
+                    Suggested stop sequence for the campus shuttle
+                </div>
+
+                <div class="shuttle-route">
+
+                    <div class="shuttle-route-line"></div>
+
+                    <div class="shuttle-stop">
+                        <div class="shuttle-stop-dot"></div>
+                        <div class="shuttle-stop-content">
+                            <strong>Stop 1 • Main Entrance</strong>
+                            <span>Primary pickup and drop-off point</span>
+                        </div>
+                    </div>
+
+                    <div class="shuttle-stop">
+                        <div class="shuttle-stop-dot"></div>
+                        <div class="shuttle-stop-content">
+                            <strong>Stop 2 • Academic Area</strong>
+                            <span>For students going to classrooms</span>
+                        </div>
+                    </div>
+
+                    <div class="shuttle-stop">
+                        <div class="shuttle-stop-dot"></div>
+                        <div class="shuttle-stop-content">
+                            <strong>Stop 3 • Student Services</strong>
+                            <span>Registrar and student assistance area</span>
+                        </div>
+                    </div>
+
+                    <div class="shuttle-stop">
+                        <div class="shuttle-stop-dot"></div>
+                        <div class="shuttle-stop-content">
+                            <strong>Stop 4 • Student Area</strong>
+                            <span>Convenient stop for common student facilities</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="shuttle-map-note">
+                    Route stops shown are placeholders for the prototype.
+                    Replace them with the official campus shuttle stops.
+                </div>
+
+            </div>
+
+            <div class="service-card">
+
+                <div class="service-row">
+                    <div class="service-icon">⏰</div>
+                    <div>
+                        <h4>Shuttle Schedule</h4>
+                        <p>Morning: 7:00 AM–10:00 AM • Afternoon: 1:00 PM–5:00 PM</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="primary-btn"
+                    onclick="openGoogleMaps()">
+                🗺️ Open Campus in Google Maps
+            </button>
+
+            <button class="secondary-btn"
+                    onclick="showTransportationInfo()">
+                ℹ️ Transportation Information
+            </button>
+
+        </div>
+
+
+        <!-- ANNOUNCEMENTS -->
+        <div class="screen" id="announcements">
+
+            <div class="page-header">
+                <button class="back-btn" onclick="showScreen('profile')">←</button>
+                <h2>Announcements</h2>
+            </div>
+
+            <div class="announcement-intro">
+                <div class="announcement-intro-icon">📢</div>
+                <div>
+                    <h3>Important Announcements</h3>
+                    <p>Stay updated with important notices, advisories, and reminders for students.</p>
+                </div>
+            </div>
+
+            <div class="announcement-board">
+
+                <div class="official-label">LATEST NOTICES</div>
+
+                <div class="notice-post urgent" onclick="showAnnouncementDetails('Campus Safety and Security Advisory','SAFETY ADVISORY','October 7, 2026','Students are reminded to remain alert and prioritize their safety while inside the campus. Please report any suspicious activity, emergency, or safety concern immediately to Campus Security.','Keep your Student ID with you and follow instructions from authorized school personnel.')">
+                    <div class="notice-top">
+                        <span class="notice-category urgent-tag">URGENT</span>
+                        <span class="notice-date">October 7, 2026</span>
+                    </div>
+                    <h4>Campus Safety and Security Advisory</h4>
+                    <p>Students are reminded to remain alert and immediately report suspicious activities or safety concerns.</p>
+                    <div class="read-more">Read More <span>›</span></div>
+                </div>
+
+                <div class="notice-post" onclick="showAnnouncementDetails('Student Safety App Reminder','STUDENT NOTICE','October 6, 2026','The CCC Student Safety App is available to help students quickly report safety concerns and request assistance while inside the campus.','Students may use the app to report a lost ID, facility problem, security concern, or emergency situation.')">
+                    <div class="notice-top">
+                        <span class="notice-category">STUDENT NOTICE</span>
+                        <span class="notice-date">October 6, 2026</span>
+                    </div>
+                    <h4>Student Safety App Reminder</h4>
+                    <p>Know where to find emergency assistance, reports, campus services, and security support.</p>
+                    <div class="read-more">Read More <span>›</span></div>
+                </div>
+
+                <div class="notice-post" onclick="showAnnouncementDetails('Important Campus Information','CAMPUS ADVISORY','October 5, 2026','Students are encouraged to regularly check the Announcements section of the Student Safety App for important campus notices, safety advisories, and other information.','Please stay informed and follow official instructions released by the school.')">
+                    <div class="notice-top">
+                        <span class="notice-category">CAMPUS ADVISORY</span>
+                        <span class="notice-date">October 5, 2026</span>
+                    </div>
+                    <h4>Important Campus Information</h4>
+                    <p>Check this page regularly for important campus notices and information that may require your attention.</p>
+                    <div class="read-more">Read More <span>›</span></div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- SCHOOL EVENTS -->
+        <div class="screen" id="events">
+
+            <div class="page-header">
+
+                <button class="back-btn"
+                        onclick="showScreen('home')">
+                    ←
+                </button>
+
+                <h2>School Events</h2>
+
+            </div>
+
+            <div class="service-card">
+
+                <div class="event-item">
+                    <h4>📚 Student Orientation</h4>
+                    <p>Campus orientation and student information session.</p>
+                    <p><b>Schedule:</b> October 10, 2026 • 9:00 AM</p>
+                </div>
+
+                <div class="event-item">
+                    <h4>🎓 Academic Activities</h4>
+                    <p>Upcoming academic and department activities for students.</p>
+                    <p><b>Venue:</b> Main Campus</p>
+                </div>
+
+                <div class="event-item">
+                    <h4>🏫 Student Organization Activities</h4>
+                    <p>Check with your department or student organization for activity schedules.</p>
+                </div>
+
+            </div>
+
+            <button class="primary-btn"
+                    onclick="showEventReminder()">
+                🔔 Event Reminder
+            </button>
+
+        </div>
+
+
+        <!-- STUDENT HELP DESK -->
+        <div class="screen" id="helpdesk">
+
+            <div class="page-header">
+
+                <button class="back-btn"
+                        onclick="showScreen('home')">
+                    ←
+                </button>
+
+                <h2>Student Help Desk</h2>
+
+            </div>
+
+            <div class="form-card">
+
+                <div class="form-group">
+
+                    <label>Concern / Inquiry</label>
+
+                    <select id="helpConcern">
+                        <option value="">Select concern</option>
+                        <option>Enrollment / Registration</option>
+                        <option>Academic Concern</option>
+                        <option>Student Records</option>
+                        <option>School Facilities</option>
+                        <option>Student Services</option>
+                        <option>Other</option>
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Your Message</label>
+
+                    <textarea id="helpMessage"
+                              placeholder="Describe your concern or question..."></textarea>
+
+                </div>
+
+                <button class="primary-btn"
+                        onclick="submitHelpDesk()">
+                    📩 Submit Request
+                </button>
+
+                <button class="secondary-btn"
+                        onclick="showHelpDeskContact()">
+                    ☎️ Contact Information
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROFILE -->
+        <div class="screen" id="profile">
+
+            <div class="page-header">
+
+                <button class="back-btn"
+                        onclick="showScreen('home')">
+                    ←
+                </button>
+
+                <h2>Profile</h2>
+
+            </div>
+
+
+            <div class="profile-card">
+
+                <div class="profile-avatar">
+                    👤
+                </div>
+
+                <h3>CCC Student</h3>
+
+                <p>
+                    Student Safety Account
+                </p>
+
+            </div>
+
+
+            <div class="settings-card">
+
+                <div class="settings-section-title">
+                    <span>🎓</span>
+                    <b>Student Services</b>
+                </div>
+
+                <button class="setting"
+                        onclick="showScreen('announcements')">
+
+                    <div class="setting-left">
+
+                        <div class="setting-icon">
+                            📢
+                        </div>
+
+                        <div>
+                            <b>Announcements</b>
+                            <small>Important school notices and safety reminders</small>
+                        </div>
+
+                    </div>
+
+                    <span>›</span>
+
+                </button>
+
+
+                <button class="setting"
+                        onclick="showScreen('transportation')">
+
+                    <div class="setting-left">
+
+                        <div class="setting-icon">
+                            🚌
+                        </div>
+
+                        <div>
+                            <b>Campus Transportation</b>
+                            <small>Routes and pickup information</small>
+                        </div>
+
+                    </div>
+
+                    <span>›</span>
+
+                </button>
+
+
+                <button class="setting"
+                        onclick="showScreen('events')">
+
+                    <div class="setting-left">
+
+                        <div class="setting-icon">
+                            📅
+                        </div>
+
+                        <div>
+                            <b>School Events</b>
+                            <small>Upcoming activities and announcements</small>
+                        </div>
+
+                    </div>
+
+                    <span>›</span>
+
+                </button>
+
+
+                <button class="setting"
+                        onclick="showScreen('helpdesk')">
+
+                    <div class="setting-left">
+
+                        <div class="setting-icon">
+                            🎧
+                        </div>
+
+                        <div>
+                            <b>Student Help Desk</b>
+                            <small>Questions and student assistance</small>
+                        </div>
+
+                    </div>
+
+                    <span>›</span>
+
+                </button>
+
+            </div>
+
+
+            <div class="settings-card">
+
+                <button class="setting"
+                        onclick="showScreen('reports')">
+
+                    <div class="setting-left">
+
+                        <div class="setting-icon">
+                            📋
+                        </div>
+
+                        <b>My Reports</b>
+
+                    </div>
+
+                    <span>›</span>
+
+                </button>
+
+
+                <button class="setting"
+                        onclick="toggleDarkMode()">
+
+                    <div class="setting-left">
+
+                        <div class="setting-icon">
+                            🌙
+                        </div>
+
+                        <b>Dark Mode</b>
+
+                    </div>
+
+                    <span>›</span>
+
+                </button>
+
+
+                <button class="setting"
+                        onclick="showAbout()">
+
+                    <div class="setting-left">
+
+                        <div class="setting-icon">
+                            ℹ️
+                        </div>
+
+                        <b>About Safety App</b>
+
+                    </div>
+
+                    <span>›</span>
+
+                </button>
+
+
+                <button class="setting"
+                        onclick="logout()">
+
+                    <div class="setting-left">
+
+                        <div class="setting-icon">
+                            🚪
+                        </div>
+
+                        <b>Logout</b>
+
+                    </div>
+
+                    <span>›</span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BOTTOM NAV
+    ========================= -->
+
+    <div class="bottom-nav">
+
+        <button class="nav-btn active"
+                id="navHome"
+                onclick="showScreen('home')">
+
+            <span>⌂</span>
+            Home
+
+        </button>
+
+
+        <button class="nav-btn"
+                id="navMap"
+                onclick="showScreen('facility')">
+
+            <span>⌖</span>
+            Map
+
+        </button>
+
+
+        <button class="nav-btn"
+                id="navReports"
+                onclick="showScreen('reports')">
+
+            <span>▤</span>
+            Reports
+
+        </button>
+
+
+        <button class="nav-btn"
+                id="navProfile"
+                onclick="showScreen('profile')">
+
+            <span>♙</span>
+            Profile
+
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         EMERGENCY MODAL
+    ========================= -->
+
+    <div class="modal" id="emergencyModal">
+
+        <div class="modal-box">
+
+            <div class="modal-icon">
+                🚨
+            </div>
+
+            <h2>Emergency Alert</h2>
+
+            <p>
+                Are you currently experiencing an emergency?
+                Campus security will be notified that you
+                need immediate assistance.
+            </p>
+
+            <div class="modal-buttons">
+
+                <button class="cancel"
+                        onclick="closeEmergency()">
+
+                    Cancel
+
+                </button>
+
+                <button class="confirm"
+                        onclick="sendEmergency()">
+
+                    SEND ALERT
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+<!-- =========================
+     IN-APP PHONE NOTIFICATION
+========================= -->
+
+<div class="app-notification" id="appNotification">
+
+    <div class="app-notification-icon" id="appNotificationIcon">
+        🔔
+    </div>
+
+    <div class="app-notification-content">
+
+        <div class="app-notification-title"
+             id="appNotificationTitle">
+            Notification
+        </div>
+
+        <div class="app-notification-message"
+             id="appNotificationMessage">
+            Notification message
+        </div>
+
+        <div class="app-notification-time">
+            Just now
+        </div>
+
+    </div>
+
+    <button class="app-notification-close"
+            onclick="hideAppNotification()">
+        ×
+    </button>
+
+</div>
+
+
+<!-- =========================
+     IN-APP DIALOG
+========================= -->
+
+<div class="phone-dialog" id="phoneDialog">
+
+    <div class="phone-dialog-box">
+
+        <div class="phone-dialog-icon"
+             id="phoneDialogIcon">
+            ℹ️
+        </div>
+
+        <h3 id="phoneDialogTitle">
+            Notice
+        </h3>
+
+        <p id="phoneDialogMessage">
+            Message
+        </p>
+
+        <div class="phone-dialog-buttons"
+             id="phoneDialogButtons">
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div class="toast" id="toast">
+    Notification
+</div>
+
+
+<script>
+
+/* =========================
+   CLOCK
+========================= */
+
+function updateClock() {
+
+    const now = new Date();
+
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+
+    if(minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    let ampm = hours >= 12 ? "PM" : "AM";
+
+    hours = hours % 12;
+
+    if(hours === 0) {
+        hours = 12;
+    }
+
+    document.getElementById("clock").textContent =
+        hours + ":" + minutes + " " + ampm;
+}
+
+setInterval(updateClock,1000);
+updateClock();
+
+
+/* =========================
+   SCREEN NAVIGATION
+========================= */
+
+function showScreen(screenId) {
+
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
+
+    const target = document.getElementById(screenId);
+
+    if(target) {
+        target.classList.add("active");
+    }
+
+    updateNavigation(screenId);
+
+    document.getElementById("notificationPanel")
+        .classList.remove("show");
+}
+
+
+function updateNavigation(screen) {
+
+    document.querySelectorAll(".nav-btn")
+        .forEach(btn => btn.classList.remove("active"));
+
+    if(screen === "home") {
+        document.getElementById("navHome")
+            .classList.add("active");
+    }
+
+    if(screen === "facility" ||
+       screen === "facilityReport") {
+
+        document.getElementById("navMap")
+            .classList.add("active");
+    }
+
+    if(screen === "reports") {
+        document.getElementById("navReports")
+            .classList.add("active");
+    }
+
+    if(screen === "profile") {
+        document.getElementById("navProfile")
+            .classList.add("active");
+    }
+}
+
+
+/* =========================
+   EMERGENCY
+========================= */
+
+function openEmergency() {
+
+    document.getElementById("emergencyModal")
+        .classList.add("show");
+}
+
+
+function closeEmergency() {
+
+    document.getElementById("emergencyModal")
+        .classList.remove("show");
+}
+
+
+function sendEmergency() {
+
+    closeEmergency();
+
+    addNotification(
+        "🚨 Emergency Alert Sent",
+        "Your emergency request has been submitted to campus security."
+    );
+
+    showAppNotification(
+        "🚨",
+        "Emergency Alert Sent",
+        "Your request has been sent to Campus Security. Please remain in a safe location."
+    );
+
+    showToast(
+        "🚨 Emergency alert sent successfully!"
+    );
+
+    setTimeout(() => {
+
+        alert(
+            "EMERGENCY ALERT\n\n" +
+            "Your request has been sent to Campus Security.\n\n" +
+            "Please remain in a safe location and wait for assistance."
+        );
+
+    },500);
+}
+
+
+/* =========================
+   ID LOST
+========================= */
+
+function submitLostID() {
+
+    const name =
+        document.getElementById("studentName").value;
+
+    const id =
+        document.getElementById("studentID").value;
+
+    const location =
+        document.getElementById("lostLocation").value;
+
+    const date =
+        document.getElementById("lostDate").value;
+
+    if(!name || !id || !location || !date) {
+
+        showToast(
+            "⚠️ Please complete all required fields."
+        );
+
+        return;
+    }
+
+
+    const report = {
+        type: "Lost ID",
+        description:
+            "Lost ID reported at " + location,
+        status: "Pending",
+        date: new Date().toLocaleString()
+    };
+
+
+    saveReport(report);
+
+
+    addNotification(
+        "🪪 Lost ID Report Submitted",
+        "Your lost ID report is now being reviewed."
+    );
+
+
+    showToast(
+        "✅ Lost ID report submitted!"
+    );
+
+
+    document.getElementById("studentName").value = "";
+    document.getElementById("studentID").value = "";
+    document.getElementById("lostLocation").value = "";
+    document.getElementById("lostDate").value = "";
+    document.getElementById("lostDetails").value = "";
+
+
+    setTimeout(() => {
+
+        showScreen("reports");
+        loadSavedReports();
+
+    },800);
+}
+
+
+/* =========================
+   FACILITY
+========================= */
+
+function showFacilityReport() {
+
+    showScreen("facilityReport");
+}
+
+
+function submitFacilityReport() {
+
+    const problem =
+        document.getElementById("facilityProblem").value;
+
+    if(!problem) {
+
+        showToast(
+            "⚠️ Please describe the facility problem."
+        );
+
+        return;
+    }
+
+
+    const facility =
+        document.getElementById("facilityName").value;
+
+    const priority =
+        document.getElementById("facilityPriority").value;
+
+
+    const report = {
+
+        type: "Facility Concern",
+
+        description:
+            facility +
+            " - " +
+            problem +
+            " (" +
+            priority +
+            " priority)",
+
+        status: "Pending",
+
+        date: new Date().toLocaleString()
+
+    };
+
+
+    saveReport(report);
+
+
+    addNotification(
+        "🏫 Facility Report Submitted",
+        "Your facility concern has been forwarded for review."
+    );
+
+
+    showToast(
+        "✅ Facility report submitted!"
+    );
+
+
+    document.getElementById("facilityProblem").value = "";
+
+    setTimeout(() => {
+
+        showScreen("reports");
+
+        loadSavedReports();
+
+    },800);
+}
+
+
+/* =========================
+   SECURITY
+========================= */
+
+function confirmSecurityCall() {
+
+    closePhoneDialog();
+
+    showAppNotification(
+        "📞",
+        "Calling Campus Security",
+        "Connecting you to the Campus Security office..."
+    );
+
+    showToast(
+        "📞 Connecting to Campus Security..."
+    );
+}
+
+
+function messageSecurity() {
+
+    addNotification(
+        "💬 Security Message",
+        "Your message channel with Campus Security has been opened."
+    );
+
+    showToast(
+        "💬 Security messaging opened."
+    );
+}
+
+
+function requestSecurity() {
+
+    const location =
+        document.getElementById("securityLocation").value;
+
+    const details =
+        document.getElementById("securityDetails").value;
+
+
+    if(!location || !details) {
+
+        showToast(
+            "⚠️ Please provide the location and details."
+        );
+
+        return;
+    }
+
+
+    const type =
+        document.getElementById("securityType").value;
+
+
+    const report = {
+
+        type: "Security Assistance",
+
+        description:
+            type +
+            " at " +
+            location +
+            ": " +
+            details,
+
+        status: "Pending",
+
+        date: new Date().toLocaleString()
+
+    };
+
+
+    saveReport(report);
+
+
+    addNotification(
+        "🛡️ Security Request Sent",
+        "Campus Security has received your assistance request."
+    );
+
+
+    showToast(
+        "✅ Security request sent!"
+    );
+
+
+    setTimeout(() => {
+
+        showScreen("reports");
+
+        loadSavedReports();
+
+    },800);
+}
+
+
+/* =========================
+   GOOGLE MAPS
+========================= */
+
+function openGoogleMaps() {
+
+    window.open(
+        "https://www.google.com/maps/search/?api=1&query=City+College+of+Calamba,+Calamba,+Laguna",
+        "_blank"
+    );
+}
+
+
+/* =========================
+   REPORT STORAGE
+========================= */
+
+function saveReport(report) {
+
+    let reports =
+        JSON.parse(
+            localStorage.getItem("cccReports")
+        ) || [];
+
+    reports.unshift(report);
+
+    localStorage.setItem(
+        "cccReports",
+        JSON.stringify(reports)
+    );
+}
+
+
+function loadSavedReports() {
+
+    const reports =
+        JSON.parse(
+            localStorage.getItem("cccReports")
+        ) || [];
+
+
+    const list =
+        document.getElementById("reportsList");
+
+
+    reports.forEach(report => {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "report-card";
+
+        card.dataset.status =
+            report.status;
+
+
+        let statusClass = "pending";
+
+        if(report.status === "Reviewed") {
+            statusClass = "reviewed";
+        }
+
+        if(report.status === "Resolved") {
+            statusClass = "resolved";
+        }
+
+
+        card.innerHTML = `
+
+            <div class="report-head">
+
+                <h4>
+                    📋 ${report.type}
+                </h4>
+
+                <span class="status ${statusClass}">
+                    ${report.status}
+                </span>
+
+            </div>
+
+            <p>
+                ${report.description}
+            </p>
+
+            <div class="report-date">
+                ${report.date}
+            </div>
+
+        `;
+
+
+        list.prepend(card);
+
+    });
+}
+
+
+/* =========================
+   REPORT FILTER
+========================= */
+
+function filterReports(status, button) {
+
+    document.querySelectorAll(".filter")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+    button.classList.add("active");
+
+
+    document.querySelectorAll(".report-card")
+        .forEach(card => {
+
+            if(status === "all" ||
+               card.dataset.status === status) {
+
+                card.style.display = "block";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+}
+
+
+function searchReports() {
+
+    const query =
+        document.getElementById("reportSearch")
+            .value
+            .toLowerCase();
+
+
+    document.querySelectorAll(".report-card")
+        .forEach(card => {
+
+            const text =
+                card.textContent.toLowerCase();
+
+
+            card.style.display =
+                text.includes(query)
+                ? "block"
+                : "none";
+
+        });
+}
+
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+function toggleNotifications() {
+
+    const panel =
+        document.getElementById("notificationPanel");
+
+    panel.classList.toggle("show");
+
+    document.getElementById("notificationDot")
+        .style.display = "none";
+}
+
+
+function clearNotifications() {
+
+    document.getElementById("notificationList")
+        .innerHTML = `
+
+        <div style="
+            padding:35px;
+            text-align:center;
+            color:#98a2b3;
+            font-size:11px;
+        ">
+
+            🔔<br><br>
+            No new notifications.
+
+        </div>
+
+    `;
+
+    showToast(
+        "Notifications cleared."
+    );
+}
+
+
+function addNotification(title, message) {
+
+    const list =
+        document.getElementById("notificationList");
+
+
+    const notification =
+        document.createElement("div");
+
+    notification.className =
+        "notification unread";
+
+
+    notification.innerHTML = `
+
+        <div class="notif-icon">
+            🔔
+        </div>
+
+        <div>
+
+            <h4>${title}</h4>
+
+            <p>${message}</p>
+
+            <time>Just now</time>
+
+        </div>
+
+    `;
+
+
+    list.prepend(notification);
+
+
+    document.getElementById("notificationDot")
+        .style.display = "block";
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    },3000);
+}
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+function toggleDarkMode() {
+
+    const phone = document.getElementById("phone");
+
+    phone.classList.toggle("dark-mode");
+    document.body.classList.toggle("dark");
+
+    const isDark =
+        phone.classList.contains("dark-mode");
+
+    localStorage.setItem(
+        "cccDarkMode",
+        isDark ? "enabled" : "disabled"
+    );
+
+    showToast(
+        isDark
+        ? "🌙 Dark mode enabled"
+        : "☀️ Light mode enabled"
+    );
+}
+
+
+/* =========================
+   CAMPUS TRANSPORTATION
+========================= */
+
+function showTransportationInfo() {
+
+    showPhoneDialog(
+        "🚌",
+        "Campus Transportation",
+        "Use the campus shuttle and designated pickup areas for convenient transportation around the school. Please follow the posted schedule and campus safety guidelines.",
+        `
+        <button class="dialog-confirm"
+                onclick="closePhoneDialog()"
+                style="width:100%;">
+            OK
+        </button>
+        `
+    );
+}
+
+
+/* =========================
+   SCHOOL EVENTS
+========================= */
+
+function showEventReminder() {
+
+    addNotification(
+        "📅 School Events",
+        "You selected the school event reminder."
+    );
+
+    showAppNotification(
+        "📅",
+        "Event Reminder",
+        "School event information has been added to your notifications."
+    );
+
+    showToast("🔔 Event reminder selected.");
+}
+
+
+/* =========================
+   STUDENT HELP DESK
+========================= */
+
+function submitHelpDesk() {
+
+    const concern =
+        document.getElementById("helpConcern").value;
+
+    const message =
+        document.getElementById("helpMessage").value.trim();
+
+    if(!concern || !message) {
+
+        showToast(
+            "⚠️ Please select a concern and enter your message."
+        );
+
+        return;
+    }
+
+    saveReport({
+        type: "Student Help Desk",
+        status: "Pending",
+        description: concern + ": " + message,
+        date: new Date().toLocaleString()
+    });
+
+    addNotification(
+        "🎧 Help Desk Request",
+        "Your student help desk request has been submitted."
+    );
+
+    showAppNotification(
+        "🎧",
+        "Request Submitted",
+        "Your concern has been sent to the Student Help Desk."
+    );
+
+    showToast(
+        "✅ Help desk request submitted successfully!"
+    );
+
+    document.getElementById("helpConcern").value = "";
+    document.getElementById("helpMessage").value = "";
+
+    setTimeout(() => {
+        showScreen("helpdesk");
+    }, 700);
+}
+
+
+function showHelpDeskContact() {
+
+    showPhoneDialog(
+        "🎧",
+        "Student Help Desk",
+        "For student concerns, please coordinate with the appropriate school office or visit the campus help desk during office hours.<br><br><b>City College of Calamba</b>",
+        `
+        <button class="dialog-confirm"
+                onclick="closePhoneDialog()"
+                style="width:100%;">
+            OK
+        </button>
+        `
+    );
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+
+function showAbout() {
+
+    showPhoneDialog(
+        "🛡️",
+        "CCC Student Safety App",
+        "A campus safety and reporting prototype designed to help students report emergencies, lost IDs, facility concerns, and security issues.<br><br><b>City College of Calamba</b>",
+        `
+        <button class="dialog-confirm"
+                onclick="closePhoneDialog()"
+                style="width:100%;">
+            OK
+        </button>
+        `
+    );
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logout() {
+
+    showPhoneDialog(
+        "🚪",
+        "Logout",
+        "Are you sure you want to logout from the CCC Student Safety App?",
+        `
+        <button class="dialog-cancel"
+                onclick="closePhoneDialog()">
+            Cancel
+        </button>
+
+        <button class="dialog-danger"
+                onclick="confirmLogout()">
+            Logout
+        </button>
+        `
+    );
+}
+
+function confirmLogout() {
+
+    closePhoneDialog();
+
+    showAppNotification(
+        "🚪",
+        "Logged Out",
+        "You have been successfully logged out."
+    );
+
+    showToast(
+        "You have been logged out."
+    );
+}
+
+
+/* =========================
+   CLOSE NOTIFICATIONS
+========================= */
+
+document.addEventListener("click", function(event) {
+
+    const panel =
+        document.getElementById("notificationPanel");
+
+    const button =
+        event.target.closest(".icon-btn");
+
+
+    if(!panel.contains(event.target) && !button) {
+
+        panel.classList.remove("show");
+
+    }
+
+});
+
+/* =========================
+   PHONE NOTIFICATION
+========================= */
+
+let notificationTimer;
+
+function showAppNotification(icon, title, message) {
+
+    const notification =
+        document.getElementById("appNotification");
+
+    document.getElementById("appNotificationIcon")
+        .textContent = icon;
+
+    document.getElementById("appNotificationTitle")
+        .textContent = title;
+
+    document.getElementById("appNotificationMessage")
+        .textContent = message;
+
+    notification.classList.add("show");
+
+    clearTimeout(notificationTimer);
+
+    notificationTimer = setTimeout(() => {
+
+        hideAppNotification();
+
+    }, 4500);
+}
+
+
+function hideAppNotification() {
+
+    document.getElementById("appNotification")
+        .classList.remove("show");
+
+}
+
+
+/* =========================
+   PHONE DIALOG
+========================= */
+
+function showPhoneDialog(
+    icon,
+    title,
+    message,
+    buttons
+) {
+
+    document.getElementById("phoneDialogIcon")
+        .textContent = icon;
+
+    document.getElementById("phoneDialogTitle")
+        .textContent = title;
+
+    document.getElementById("phoneDialogMessage")
+        .innerHTML = message;
+
+    document.getElementById("phoneDialogButtons")
+        .innerHTML = buttons;
+
+    document.getElementById("phoneDialog")
+        .classList.add("show");
+}
+
+
+function closePhoneDialog() {
+
+    document.getElementById("phoneDialog")
+        .classList.remove("show");
+
+}
+
+
+/* =========================
+   ANNOUNCEMENTS
+========================= */
+function showAnnouncementDetails(title, category, date, message, action) {
+    showPhoneDialog(
+        "📢",
+        title,
+        "<div style=\"font-size:9px;color:#0052a4;font-weight:700;margin-bottom:8px;\">" + category + "</div>" +
+        "<div style=\"font-size:8px;color:#98a2b3;margin-bottom:12px;\">" + date + "</div>" +
+        "<div style=\"line-height:17px;\">" + message + "</div>" +
+        "<div style=\"margin-top:12px;padding:10px;background:#f0f6fc;border-radius:10px;font-size:9px;line-height:15px;\"><b>Important:</b><br>" + action + "</div>",
+        `
+        <button class="dialog-confirm" onclick="closePhoneDialog()" style="width:100%;">
+            Close
+        </button>
+        `
+    );
+}
+
+/* =========================
+   INITIALIZE
+========================= */
+
+loadSavedReports();
+
+</script>
+
+</body>
+</html>
